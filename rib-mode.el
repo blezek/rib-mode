@@ -1,10 +1,10 @@
-;;; rib-mode.el --- RenderMan® Interface Bytestream (RIB) Emacs Major Mode
+;;; rib-mode.el --- RenderManÂ® Interface Bytestream (RIB) Major Mode
 
-;; Description: RenderMan® Interface Bytestream (RIB) Emacs Major Mode
+;; Description: RenderManÂ® Interface Bytestream (RIB) Emacs Major Mode
 ;; Author: Remik Ziemlinski and Daniel Blezek <daniel.blezek@gmail.com>
 ;; URL: https://github.com/blezek/rib-mode
 ;; Version: 1.0
-;; Copyright © 2006 Remik Ziemlinski 
+;; Copyright Â© 2006 Remik Ziemlinski
 
 ; This program is free software; you can redistribute it and/or
 ; modify it under the terms of the GNU General Public License
@@ -20,22 +20,22 @@
 ; along with this program; if not, write to the Free Software
 ; Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 ;
-; RenderMan® is a registered trademark of Pixar.
+; RenderManÂ® is a registered trademark of Pixar.
 ; VERSION = $Id: rib-mode.el,v 1.1.1.1 2006/05/26 16:02:21 rsz Exp $
 ;
 ; Changelog:
 ; 20060524 rsz Created with basic highlighting and indentation support.
 ; 20170718 djb Published in MELPA.
 ; 
-; References:
-; [1] Pixar, RenderMan Interface Specification 3.2.1
-; [2] Borton, S.A., "An Emacs language mode creation tutorial"
-;
-; Installation:
-; - If you haven't done so already, within Xemacs choose Options->Save Options to Init File. This will create a customization file used below.
-; - Copy this file into /home/xyz/.xemacs.
-; - Add this line to your /home/xyz/.xemacs/custom.el file:
-;   (load-library '"/home/xyz/.xemacs/rib-mode")
+;;; Commentary:
+
+;; rib-mode is intended to be an (X)Emacs plugin in order to add syntax highlighting and indentation automatically to the text editing of RenderManÂ® Interface Bytestream (RIB) files that are in ASCII.  The plugin code is in Lisp which is interpreted by the Emacs environment upon application startup.
+;; I was unable to find such a plugin on the web, yet I do know that those using RenderMan tools also use Emacs editors.  For example, there is a plugin for the RenderMan Shading Language (very similar to the C language), but none for the scene description interface known as RIB (a pascal-like language).  RIB is intended to be human readable and editable to allow for the highest level of control of your scenes without resorting to C programming.
+;; References:
+;; [1] Pixar, RenderMan Interface Specification 3.2.1
+;; [2] Borton, S.A., "An Emacs language mode creation tutorial"
+
+;;; Code:
 
 (defvar rib-mode-hook nil)
 
@@ -57,7 +57,7 @@
 	 '("\\<\\(Attribute\\(?:Begin\\|End\\)\\|Begin\\|End\\|Frame\\(?:Begin\\|End\\)\\|Motion\\(?:Begin\\|End\\)\\|Object\\(?:Begin\\|End\\)\\|Solid\\(?:Begin\\|End\\)\\|Transform\\(?:Begin\\|End\\)\\|World\\(?:Begin\\|End\\)\\)\\>" . font-lock-builtin-face)
 	 '("\\<\\(ErrorHandler\\)\\>" . font-lock-warning-face)
 	 )
-	"Minimal highlighting expressions for RIB mode")
+	"Minimal highlighting expressions for RIB mode.")
 
 ; level 2
 (defconst rib-font-lock-keywords-2
@@ -96,7 +96,7 @@
 					(progn
 						(save-excursion
 							(forward-line -1)
-							(setq cur-indent (- (current-indentation) default-tab-width)))
+							(setq cur-indent (- (current-indentation) tab-width)))
 						(if (< cur-indent 0)
 								(setq cur-indent 0)))
 				; else
@@ -110,9 +110,9 @@
 							; else
 							(if (looking-at "^[ \t]*[a-zA-Z]*Begin") ; rule 4.
 									(progn
-										(setq cur-indent (+ (current-indentation) default-tab-width))
+										(setq cur-indent (+ (current-indentation) tab-width))
 										(setq not-indented nil)) ; return.
-								(if (bobp) ; rule 5.										
+								(if (bobp) ; rule 5.
 										(setq not-indented nil))))))
 				    )
 			; Indent if cur-indent is defined from above.
@@ -128,7 +128,7 @@
 		(modify-syntax-entry ?# "<" rib-mode-syntax-table)
 		(modify-syntax-entry ?\n ">" rib-mode-syntax-table)
 				rib-mode-syntax-table)
-		"Syntax table for rib-mode")
+		"Syntax table for â€˜rib-modeâ€™.")
 
 (defun rib-mode()
 	"Major mode for editing RenderMan(R) Interface Bytestream ASCII files"
