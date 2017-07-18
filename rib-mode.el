@@ -1,6 +1,11 @@
-; RenderMan® Interface Bytestream (RIB) Emacs Major Mode
-; Copyright © 2006 Remik Ziemlinski 
-;
+;;; rib-mode.el --- RenderMan® Interface Bytestream (RIB) Emacs Major Mode
+
+;; Description: RenderMan® Interface Bytestream (RIB) Emacs Major Mode
+;; Author: Remik Ziemlinski and Daniel Blezek <daniel.blezek@gmail.com>
+;; URL: https://github.com/blezek/rib-mode
+;; Version: 1.0
+;; Copyright © 2006 Remik Ziemlinski 
+
 ; This program is free software; you can redistribute it and/or
 ; modify it under the terms of the GNU General Public License
 ; as published by the Free Software Foundation; either version 2
@@ -20,7 +25,8 @@
 ;
 ; Changelog:
 ; 20060524 rsz Created with basic highlighting and indentation support.
-;
+; 20170718 djb Published in MELPA.
+; 
 ; References:
 ; [1] Pixar, RenderMan Interface Specification 3.2.1
 ; [2] Borton, S.A., "An Emacs language mode creation tutorial"
@@ -136,3 +142,4 @@
 	(run-hooks 'rib-mode-hook))
 
 (provide 'rib-mode)
+;;; rib-mode.el ends here
