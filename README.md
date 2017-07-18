@@ -1,2 +1,3 @@
 # rib-mode
-Emacs rib mode for RenderMan
+Emacs rib mode for RenderMan.
+
